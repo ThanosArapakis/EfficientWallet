@@ -1,25 +1,37 @@
-var builder = WebApplication.CreateBuilder(args);
+namespace EfficientWallet.Core.Api;
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public static class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] args)
+    {
+        try
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred while starting the application: {ex.Message}");
+            Console.WriteLine(ex.StackTrace);
+            throw;
+        }
+        finally
+        {
+            Console.WriteLine("Application has stopped.");
+        }
+    }
+
+    static IHostBuilder CreateHostBuilder(string[] args)
+    {
+        return Host.CreateDefaultBuilder(args)
+                    .ConfigureWebHostDefaults(webBuilder =>
+                    {
+                        webBuilder.UseStartup<Startup>()
+                        .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
+                        .CaptureStartupErrors(true);
+                    })
+                    .ConfigureLogging(builder =>
+                    {
+                        builder.ClearProviders();
+                    });
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
