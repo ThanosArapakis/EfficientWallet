@@ -29,6 +29,12 @@ namespace EfficientWallet.ECB.Http.Contracts
 
     public class EcbCubeContainer
     {
+        [XmlElement(ElementName = "Cube", Namespace = "http://www.ecb.int/vocabulary/2002-08-01/eurofxref")]
+        public List<EcbCube> DateRates { get; set; } = new();
+    }
+
+    public class EcbCube
+    {
         [XmlAttribute("time")]
         public string Date { get; set; } = string.Empty;
 

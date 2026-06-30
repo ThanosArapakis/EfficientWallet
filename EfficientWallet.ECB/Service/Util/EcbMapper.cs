@@ -16,8 +16,8 @@ namespace EfficientWallet.ECB.Service.Util
         {
             return new GetEchangesResponse
             (
-                DateTime.Parse(ecbEnvelope.Cube.Date, new CultureInfo("el-GR")),
-                ecbEnvelope.Cube.Rates.Select(x => new ExchangeRate
+                DateTime.Parse(ecbEnvelope.Cube.DateRates.First().Date),
+                ecbEnvelope.Cube.DateRates.First().Rates.Select(x => new ExchangeRateItem
                 (
                     x.Currency,
                     x.Rate

@@ -3,10 +3,10 @@
     public record GetEchangesResponse
     (
         DateTime? RatesDate,
-        List<ExchangeRate> ExchangeRates
+        List<ExchangeRateItem> ExchangeRates
     );
 
-    public record ExchangeRate
+    public record ExchangeRateItem
     (
         string Currency,
         decimal? Rate

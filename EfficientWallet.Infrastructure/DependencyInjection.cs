@@ -1,5 +1,7 @@
-﻿using EfficientWallet.ECB;
+using EfficientWallet.Application.Common.Interfaces;
+using EfficientWallet.ECB;
 using EfficientWallet.Infrastructure.Persistence;
+using EfficientWallet.Infrastructure.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +12,9 @@ namespace EfficientWallet.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         => services.AddHttpClients()
-                   .AddDatabase(configuration);
+                   .AddDatabase(configuration)
+                   .AddRepositories()
+                   .AddECB(configuration);
 
 
         private static IServiceCollection AddHttpClients(this IServiceCollection services)
@@ -24,6 +28,14 @@ namespace EfficientWallet.Infrastructure
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+            return services;
+        }
+
+        private static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
+            services.AddScoped<IWalletRepository, WalletRepository>();
             return services;
         }
 

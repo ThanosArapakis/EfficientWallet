@@ -17,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EfficientWallet.Application\EfficientWallet.Application.csproj" />
+    <ProjectReference Include="..\EfficientWallet.Domain\EfficientWallet.Domain.csproj" />
     <ProjectReference Include="..\EfficientWallet.ECB\EfficientWallet.ECB.csproj" />
   </ItemGroup>
 

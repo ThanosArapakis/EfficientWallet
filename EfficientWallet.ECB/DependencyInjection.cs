@@ -24,7 +24,10 @@ namespace EfficientWallet.ECB
         private static IServiceCollection AddHttpClients(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<ECBClientSettings>(configuration.GetSection(ECBClientSettings.Section));
-            services.AddRefitClient<IEcbClient>()
+            services.AddRefitClient<IEcbClient>(new RefitSettings
+            {
+                ContentSerializer = new XmlContentSerializer()
+            })
             .ConfigureHttpClient((sp, client) =>
             {
                 ECBClientSettings settings = sp.GetRequiredService<IOptions<ECBClientSettings>>().Value;

@@ -9,13 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="OpenMediator" Version="1.2.1" />
+    <PackageReference Include="Refit" Version="8.0.0" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="8.0.0" />
+    <PackageReference Include="Refit.Xml" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EfficientWallet.Application\EfficientWallet.Application.csproj" />
+    <ProjectReference Include="..\EfficientWallet.ECB\EfficientWallet.ECB.csproj" />
     <ProjectReference Include="..\EfficientWallet.Infrastructure\EfficientWallet.Infrastructure.csproj" />
   </ItemGroup>
 

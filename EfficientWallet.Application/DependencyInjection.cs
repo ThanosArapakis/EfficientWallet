@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EfficientWallet.Application.Common.Interfaces;
+using EfficientWallet.Application.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EfficientWallet.Application
 {
@@ -9,6 +11,7 @@ namespace EfficientWallet.Application
 
         private static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IBalanceConverter, BalanceConverter>();
             return services;
         }
     }
