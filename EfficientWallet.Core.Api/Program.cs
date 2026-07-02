@@ -3,6 +3,8 @@ using EfficientWallet.Application.Common.Interfaces;
 using EfficientWallet.Application.Services;
 using EfficientWallet.Core.Api.BackgroundServices;
 using EfficientWallet.Infrastructure;
+using EfficientWallet.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace EfficientWallet.Core.Api;
@@ -21,11 +23,21 @@ public static class Program
             .AddApplication()
             .AddInfrastructure(builder.Configuration);
 
+            //background service for fetching the exchange rates once in a minute
             builder.Services.AddHostedService<ExchangeRateSyncWorker>();
             builder.Services.AddMemoryCache();
             builder.Services.AddSingleton<IRateCache, RatesMemoryCache>();
 
             var app = builder.Build();
+
+            // Ensure the database exists and is on the latest schema before serving traffic.
+            // Creates EfficientWalletDB on a fresh SQL Server container and applies migrations.
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                dbContext.Database.Migrate();
+            }
+
             app.Configure(app.Environment);
 
             app.Run();

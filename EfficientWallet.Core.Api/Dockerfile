@@ -13,6 +13,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["EfficientWallet.Core.Api/EfficientWallet.Core.Api.csproj", "EfficientWallet.Core.Api/"]
+COPY ["EfficientWallet.Application/EfficientWallet.Application.csproj", "EfficientWallet.Application/"]
+COPY ["EfficientWallet.Domain/EfficientWallet.Domain.csproj", "EfficientWallet.Domain/"]
+COPY ["EfficientWallet.ECB/EfficientWallet.ECB.csproj", "EfficientWallet.ECB/"]
+COPY ["EfficientWallet.Infrastructure/EfficientWallet.Infrastructure.csproj", "EfficientWallet.Infrastructure/"]
 RUN dotnet restore "./EfficientWallet.Core.Api/EfficientWallet.Core.Api.csproj"
 COPY . .
 WORKDIR "/src/EfficientWallet.Core.Api"

@@ -21,7 +21,5 @@ namespace EfficientWallet.Infrastructure.Persistence.Util
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
-
-        public static RetrieveWalletBalanceResponse ToWalletBalanceResponse(this Wallet wallet) => new RetrieveWalletBalanceResponse(wallet.Balance);
     }
 }

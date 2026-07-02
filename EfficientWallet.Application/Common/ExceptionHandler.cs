@@ -37,6 +37,7 @@ public class ExceptionHandler<T>
     {
         ErrorOr<TResponse> response = await action();
 
+        //resolving the ErrorOr response of the services into the generic ResponseDto
         return response.Match(
             isSuccess =>
             {

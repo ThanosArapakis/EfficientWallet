@@ -20,7 +20,6 @@ namespace EfficientWallet.Core.Api.Controllers
             _exceptionHandler = new ExceptionHandler<T>(logger);
         }
 
-        //TODO: Revisit this method when implementing exception handling strategy
         private protected async Task<ResponseDto> HandleExceptionAsync<TResponse>(Func<Task<ErrorOr<TResponse>>> action)
         where TResponse : class
         {

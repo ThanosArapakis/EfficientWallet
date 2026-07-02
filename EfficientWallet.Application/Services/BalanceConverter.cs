@@ -18,18 +18,19 @@ namespace EfficientWallet.Application.Services
             if (CompareCurrency(fromCurrency, toCurrency))
                 return amount;
 
+            //Converter firstly converts the amount to euro because EcbBaseCurrency is EUR.
+            //Then if toCurrency is Euro, the amount is ready, otherwise we have to switch eur to the other currency
             decimal amountInEur = ToEur(fromCurrency, amount);
             return FromEur(toCurrency, amountInEur);
         }
 
-        // X -> EUR.  The feed quotes 1 EUR = rate[X] units of X, so units / rate = EUR.
         private decimal ToEur(string currency, decimal amount)
         {
             if (CompareCurrency(currency, Const.EcbBaseCurrency))
                 return amount;
 
             if (!_cache.TryGetRate(currency, out var rate))
-                throw new InvalidOperationException($"No exchange rate available for '{currency}'.");
+                throw new InvalidOperationException($"No exchange rate available for '{currency}'");
 
             return amount / rate;
         }
@@ -40,7 +41,7 @@ namespace EfficientWallet.Application.Services
                 return amountInEur;
 
             if (!_cache.TryGetRate(currency, out var rate))
-                throw new InvalidOperationException($"No exchange rate available for '{currency}'.");
+                throw new InvalidOperationException($"No exchange rate available for '{currency}'");
 
             return amountInEur * rate;
         }

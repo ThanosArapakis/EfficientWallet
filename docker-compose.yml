@@ -1,0 +1,49 @@
+name: EfficientWallet
+
+# Local "Localhost" environment: the API plus its dependencies, all in containers.
+# Bring it up with:  docker compose up --build
+services:
+  api:
+    build:
+      context: .
+      dockerfile: EfficientWallet.Core.api/Dockerfile
+    container_name: EfficientWallet-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+    ports:
+      - "8080:8080"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - efficientwallet-net
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: EfficientWallet-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Local_Dev_Pass123!"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      # SELECT 1 over sqlcmd; -C trusts the container's self-signed cert.
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q \"SELECT 1\" || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - efficientwallet-net
+
+volumes:
+  sqlserver-data:
+
+networks:
+  efficientwallet-net:
+    driver: bridge
+

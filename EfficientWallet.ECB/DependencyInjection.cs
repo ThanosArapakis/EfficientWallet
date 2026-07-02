@@ -26,7 +26,7 @@ namespace EfficientWallet.ECB
             services.Configure<ECBClientSettings>(configuration.GetSection(ECBClientSettings.Section));
             services.AddRefitClient<IEcbClient>(new RefitSettings
             {
-                ContentSerializer = new XmlContentSerializer()
+                ContentSerializer = new XmlContentSerializer() //Ecb client returns an xml response
             })
             .ConfigureHttpClient((sp, client) =>
             {
