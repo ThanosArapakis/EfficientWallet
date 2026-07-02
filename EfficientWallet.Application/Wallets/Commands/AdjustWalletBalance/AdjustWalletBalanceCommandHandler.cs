@@ -1,7 +1,7 @@
-﻿using EfficientWallet.Application.Common.Interfaces;
+﻿using EfficientWallet.Application.Common.Contracts;
+using EfficientWallet.Application.Common.Interfaces;
 using ErrorOr;
 using OpenMediator;
-using ReservationApp.core.api.Application.Common.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;

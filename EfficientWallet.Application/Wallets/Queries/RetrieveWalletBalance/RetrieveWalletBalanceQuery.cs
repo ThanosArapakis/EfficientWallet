@@ -12,10 +12,8 @@ namespace EfficientWallet.Application.Wallets.Queries.RetrieveWalletBalance
 {
     public class RetrieveWalletBalanceQuery : ICommand<ErrorOr<RetrieveWalletBalanceResponse>>
     {
-        [Required]
         public long WalletId { get; set; }
 
-        [Required]
-        public string Currency { get; set; }
+        public required string Currency { get; set; }
     }
 }

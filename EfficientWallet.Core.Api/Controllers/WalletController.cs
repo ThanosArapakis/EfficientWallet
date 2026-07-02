@@ -11,7 +11,6 @@ using EfficientWallet.Infrastructure.Persistence.Util;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using OpenMediator.Buses;
-using ReservationApp.core.api.Application.Common.Results;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace EfficientWallet.Core.Api.Controllers

@@ -8,10 +8,6 @@ namespace EfficientWallet.Core.Api.Controllers
 {
     public class BaseController<T> : ControllerBase
     {
-        private IMediatorBus? _mediator;
-
-        protected IMediatorBus Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediatorBus>() ??
-                                                         throw new InvalidOperationException("Mediator not registered");
 
         private protected readonly ExceptionHandler<T> _exceptionHandler;
 

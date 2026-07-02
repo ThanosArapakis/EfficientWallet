@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfficientWallet.Application.Services
+namespace EfficientWallet.Infrastructure.Services
 {
     public class RatesMemoryCache(IMemoryCache _cache) : IRateCache
     {

@@ -19,19 +19,7 @@ namespace EfficientWallet.Infrastructure.Persistence.Repository
         }
 
         /// <summary>
-        /// Returns every stored rate for a given ECB reference date.
-        /// </summary>
-        public Task<List<ExchangeRate>> GetByDateAsync(DateOnly ratesDate, CancellationToken cancellationToken = default)
-            => _dbSet.Where(r => r.RatesDate == ratesDate).ToListAsync(cancellationToken);
-
-        /// <summary>
         /// Bulk-upserts the given rates in a single MERGE statement (one transaction).
-        /// The source rows are supplied as an inline table value constructor
-        /// (USING (VALUES ...) AS source) with one parameter per cell, so no
-        /// table-valued parameter / user-defined table type is required. The
-        /// "AND target.Rate &lt;&gt; source.Rate" guard means an unchanged poll
-        /// (the common case when running every minute) updates nothing.
-        /// Returns the number of rows affected.
         /// </summary>
         public async Task<int> UpsertAsync(IEnumerable<ExchangeRate> rates, CancellationToken cancellationToken = default)
         {

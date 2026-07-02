@@ -1,10 +1,10 @@
-﻿using EfficientWallet.Application.Wallets.Commands.AdjustWalletBalance;
+﻿using EfficientWallet.Application.Common.Contracts;
+using EfficientWallet.Application.Wallets.Commands.AdjustWalletBalance;
 using EfficientWallet.Application.Wallets.Commands.CreateWallet;
 using EfficientWallet.Application.Wallets.Queries.RetrieveWalletBalance;
 using EfficientWallet.Application.Wallets.Results;
 using EfficientWallet.Domain;
 using ErrorOr;
-using ReservationApp.core.api.Application.Common.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;

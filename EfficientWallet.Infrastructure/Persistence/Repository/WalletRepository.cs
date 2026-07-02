@@ -1,4 +1,5 @@
 ﻿using EfficientWallet.Application.Common;
+using EfficientWallet.Application.Common.Contracts;
 using EfficientWallet.Application.Common.Interfaces;
 using EfficientWallet.Application.Wallets.Commands.AdjustWalletBalance;
 using EfficientWallet.Application.Wallets.Commands.CreateWallet;
@@ -10,7 +11,6 @@ using EfficientWallet.Infrastructure.Migrations;
 using EfficientWallet.Infrastructure.Persistence.Util;
 using ErrorOr;
 using Microsoft.EntityFrameworkCore;
-using ReservationApp.core.api.Application.Common.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +22,11 @@ namespace EfficientWallet.Infrastructure.Persistence.Repository;
 
 public class WalletRepository : Repository<Wallet>, IWalletRepository
 {
-    private readonly IRateCache _cache;
     private readonly IBalanceConverter _balanceConverter;
 
-    public WalletRepository(AppDbContext context, IRateCache cache, IBalanceConverter converter) : base(context)
+
+    public WalletRepository(AppDbContext context, IBalanceConverter converter) : base(context)
     {
-        _cache = cache;
         _balanceConverter = converter;
     }
 

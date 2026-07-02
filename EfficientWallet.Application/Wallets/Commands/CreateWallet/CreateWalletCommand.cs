@@ -1,6 +1,6 @@
-﻿using ErrorOr;
+﻿using EfficientWallet.Application.Common.Contracts;
+using ErrorOr;
 using OpenMediator;
-using ReservationApp.core.api.Application.Common.Results;
 using System.ComponentModel.DataAnnotations;
 
 namespace EfficientWallet.Application.Wallets.Commands.CreateWallet

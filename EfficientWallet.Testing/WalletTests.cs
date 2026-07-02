@@ -40,7 +40,7 @@ namespace EfficientWallet.Testing
         }
 
         private static WalletRepository CreateRepository(AppDbContext context, IBalanceConverter converter)
-            => new WalletRepository(context, Mock.Of<IRateCache>(), converter);
+            => new WalletRepository(context,  converter);
 
         private static async Task<Wallet> SeedWalletAsync(AppDbContext context, decimal balance, string currency)
         {

@@ -25,8 +25,6 @@ public static class Program
 
             //background service for fetching the exchange rates once in a minute
             builder.Services.AddHostedService<ExchangeRateSyncWorker>();
-            builder.Services.AddMemoryCache();
-            builder.Services.AddSingleton<IRateCache, RatesMemoryCache>();
 
             var app = builder.Build();
 

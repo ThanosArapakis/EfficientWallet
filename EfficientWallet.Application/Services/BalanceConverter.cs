@@ -47,6 +47,7 @@ namespace EfficientWallet.Application.Services
         }
 
         private bool CompareCurrency(string currency1, string currency2)
-            => currency1.Equals(currency2, StringComparison.CurrentCultureIgnoreCase);
+            => currency1.Equals(currency2, StringComparison.OrdinalIgnoreCase);
+
     }
 }

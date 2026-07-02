@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace EfficientWallet.Application.Common;
+namespace EfficientWallet.Core.Api;
 
 public class ExceptionHandler<T>
 {

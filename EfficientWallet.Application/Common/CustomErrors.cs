@@ -10,10 +10,6 @@ namespace EfficientWallet.Application.Common
     //Extension class for ErrorOr to define custom errors for the application
     public class CustomErrors
     {
-        public static Error ExchangeRateNotFound(string currency) => Error.NotFound(
-            code: "EXR.NotFound",
-            description: $"ExchangeRate for {currency} could not be retrieved");
-
         public static Error InvalidAmount=> Error.Validation(
             code: "Wallet.InvalidAmount",
             description: $"The given amount is invalid. Please provide a value > 0");

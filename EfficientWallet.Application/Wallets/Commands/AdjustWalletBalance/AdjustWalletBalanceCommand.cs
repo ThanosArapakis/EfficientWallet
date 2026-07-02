@@ -1,8 +1,8 @@
 ﻿using EfficientWallet.Application.Common;
+using EfficientWallet.Application.Common.Contracts;
 using EfficientWallet.Domain.Enums;
 using ErrorOr;
 using OpenMediator;
-using ReservationApp.core.api.Application.Common.Results;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

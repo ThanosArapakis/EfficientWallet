@@ -8,8 +8,6 @@ namespace EfficientWallet.Application.Common.Interfaces
     /// </summary>
     public interface IExchangeRateRepository : IRepository<ExchangeRate>
     {
-        Task<List<ExchangeRate>> GetByDateAsync(DateOnly ratesDate, CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Bulk-upserts the given rates in a single MERGE statement (one transaction):
         /// inserts rows for new (date, currency) pairs and updates the rate when it

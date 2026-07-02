@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReservationApp.core.api.Application.Common.Results
+namespace EfficientWallet.Application.Common.Contracts
 {
     public record PostResponse(
       long WalletId
